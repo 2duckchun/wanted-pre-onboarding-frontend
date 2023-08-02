@@ -1,7 +1,7 @@
 import { useState } from "react";
 import usePwdValidation from "../../hooks/usePwdValidation";
 import useEmailValidation from "../../hooks/useEmailValidation";
-import postSignUp from "../../apis/postSignUp";
+import postSignUp from "../../apis/user/postSignUp";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
@@ -42,6 +42,7 @@ export default function SignUp() {
             id='email'
             name='email'
             type='email'
+            value={input.email}
             data-testid='email-input'
             onChange={handleInput}
           />
@@ -52,6 +53,7 @@ export default function SignUp() {
             id='password'
             name='password'
             type='password'
+            value={input.password}
             data-testid='password-input'
             onChange={handleInput}
           />

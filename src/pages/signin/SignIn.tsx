@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useEmailValidation from "../../hooks/useEmailValidation";
 import usePwdValidation from "../../hooks/usePwdValidation";
-import postSignIn from "../../apis/postSignIn";
+import postSignIn from "../../apis/user/postSignIn";
 import { useNavigate } from "react-router-dom";
 import saveAccessToken from "../../utils/saveAccessToken";
 
@@ -44,6 +44,7 @@ export default function SignIn() {
             id='email'
             name='email'
             type='email'
+            value={input.email}
             data-testid='email-input'
             onChange={handleInput}
           />
@@ -54,6 +55,7 @@ export default function SignIn() {
             id='password'
             name='password'
             type='password'
+            value={input.password}
             data-testid='password-input'
             onChange={handleInput}
           />

@@ -1,4 +1,4 @@
-import { API_PATH } from "../constants/apiPath.ts";
+import { API_PATH } from "../../constants/apiPath.ts";
 import axios from "axios";
 
 const postSignIn = async (email: string, password: string) => {
@@ -43,7 +43,6 @@ signInInstance.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log(error);
     return null;
   }
 );
@@ -54,7 +53,6 @@ signInInstance.interceptors.response.use(
     return res;
   },
   (error) => {
-    console.log(error);
     return error;
   }
 );
