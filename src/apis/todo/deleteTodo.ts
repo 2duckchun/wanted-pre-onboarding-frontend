@@ -1,4 +1,4 @@
-import { API_PATH } from "../../constants/apiPath.ts";
+import { API_PATH } from "../../constants/apiPath";
 import axios from "axios";
 import getAccessToken from "../../utils/getAccessToken";
 import { deleteTodoDTO, deleteTodoResult } from "../../types/todo.js";

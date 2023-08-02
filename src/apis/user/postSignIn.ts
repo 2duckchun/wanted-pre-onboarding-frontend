@@ -1,4 +1,4 @@
-import { API_PATH } from "../../constants/apiPath.ts";
+import { API_PATH } from "../../constants/apiPath";
 import axios from "axios";
 
 const postSignIn = async (email: string, password: string) => {
