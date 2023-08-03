@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./TodoListCard.module.css";
 
 type PropsType = {
   id: number;
@@ -58,47 +59,57 @@ export default function TodoListCard({
   };
 
   return (
-    <li>
-      <label>
+    <li className={styles.todolist_card_container}>
+      <label className={styles.todolist_label}>
         <input
+          className={styles.todo_check_box}
           type='checkbox'
           checked={isChecked}
           onChange={handleOnlyUpdateCheckbox}
         />
         {isModifyMode ? (
-          <input type='text' value={todoInput} onChange={handleTodoInput} />
+          <input
+            type='text'
+            value={todoInput}
+            onChange={handleTodoInput}
+            data-testid='modify-input'
+          />
         ) : (
-          <span>{todoInput}</span>
+          <span className={styles.todo_span_text}>{todoInput}</span>
+        )}
+
+        {isModifyMode ? (
+          <button
+            data-testid='submit-button'
+            onClick={() => handleUpdateTodo(todoInput, isChecked, id)}
+          >
+            제출
+          </button>
+        ) : (
+          <button
+            data-testid='modify-button'
+            onClick={() => handleModifying(true)}
+          >
+            수정
+          </button>
+        )}
+
+        {isModifyMode ? (
+          <button
+            data-testid='cancel-button'
+            onClick={() => handleModifying(false)}
+          >
+            취소
+          </button>
+        ) : (
+          <button
+            data-testid='delete-button'
+            onClick={() => handleDeleteTodo(id)}
+          >
+            삭제
+          </button>
         )}
       </label>
-      {isModifyMode ? (
-        <button onClick={() => handleUpdateTodo(todoInput, isChecked, id)}>
-          제출
-        </button>
-      ) : (
-        <button
-          data-testid='modify-button'
-          onClick={() => handleModifying(true)}
-        >
-          수정
-        </button>
-      )}
-
-      {isModifyMode ? (
-        <button
-          data-testid='delete-button'
-          onClick={() => handleModifying(false)}
-        >
-          취소
-        </button>
-      ) : (
-        <button
-          data-testid='delete-button'
-          onClick={() => handleDeleteTodo(id)}
-        >
-          삭제
-        </button>
-      )}
     </li>
   );
 }
