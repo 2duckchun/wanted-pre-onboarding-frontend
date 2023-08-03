@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import postSignUp from "../../apis/user/postSignUp";
 import usePwdValidation from "../../hooks/usePwdValidation";
 import useEmailValidation from "../../hooks/useEmailValidation";
-import postSignUp from "../../apis/user/postSignUp";
-import { useNavigate } from "react-router-dom";
+import CustomInput from "../../components/common/CustomInput";
+import CustomButton from "../../components/common/CustomButton";
+import hasAccessToken from "../../utils/hasAccessToken";
+import styles from "./SignUp.module.css";
 
 export default function SignUp() {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -20,50 +24,52 @@ export default function SignUp() {
     });
   };
 
+  // 회원가입이 성공하면 /signin 페이지로 이동
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const signUpResult = await postSignUp(input.email, input.password);
 
     if (signUpResult.isSuccess) {
       alert(signUpResult.message);
-      navigator("/signin");
+      navigate("/signin");
     } else {
       alert(signUpResult.message);
     }
   };
 
+  useEffect(() => {
+    hasAccessToken() && navigate("/todo", { replace: true });
+  }, [navigate]);
+
   return (
     <main>
-      <h1>회원가입</h1>
+      <h1 className={styles.page_title}>회원가입</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='email'>이메일</label>
-          <input
-            id='email'
-            name='email'
-            type='email'
-            value={input.email}
-            data-testid='email-input'
-            onChange={handleInput}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>패스워드</label>
-          <input
-            id='password'
-            name='password'
-            type='password'
-            value={input.password}
-            data-testid='password-input'
-            onChange={handleInput}
-          />
-        </div>
-        <button
-          data-testid='signup-button'
-          disabled={isEmailValid && isPwdValid ? false : true}
-        >
-          회원가입
-        </button>
+        <CustomInput
+          labelFor='email'
+          labelText='email'
+          id='email'
+          name='email'
+          type='email'
+          value={input.email}
+          testid='email-input'
+          onChangeHandler={handleInput}
+        />
+        <CustomInput
+          labelFor='password'
+          labelText='password'
+          id='password'
+          name='password'
+          type='password'
+          value={input.password}
+          testid='password-input'
+          onChangeHandler={handleInput}
+        />
+        <CustomButton
+          testid='signup-button'
+          isDisabled={isEmailValid && isPwdValid ? false : true}
+          buttonText='회원가입'
+        />
       </form>
     </main>
   );
