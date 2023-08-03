@@ -1,0 +1,39 @@
+.header_container {
+  height: 50px;
+  display: flex;
+  background-color: beige;
+}
+
+.header_logo {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.header_ul {
+  flex-basis: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 25px;
+}
+
+.header_link_active {
+  text-decoration: none;
+  font-weight: bold;
+  color: tomato;
+}
+
+.header_link {
+  text-decoration: none;
+  font-weight: bold;
+  color: thistle;
+}
+
+.header_button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
