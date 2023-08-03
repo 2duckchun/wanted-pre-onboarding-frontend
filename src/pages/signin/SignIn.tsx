@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import postSignIn from "../../apis/user/postSignIn";
+import saveAccessToken from "../../utils/saveAccessToken";
 import useEmailValidation from "../../hooks/useEmailValidation";
 import usePwdValidation from "../../hooks/usePwdValidation";
-import postSignIn from "../../apis/user/postSignIn";
-import { useNavigate } from "react-router-dom";
-import saveAccessToken from "../../utils/saveAccessToken";
+import CustomButton from "../../components/common/CustomButton";
+import CustomInput from "../../components/common/CustomInput";
+import hasAccessToken from "../../utils/hasAccessToken";
+import styles from "./SignIn.module.css";
 
 export default function SignIn() {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -21,51 +25,52 @@ export default function SignIn() {
     });
   };
 
+  // 로그인이 성공하면 access token을 localStorage에 저장하고 /todo로 이동
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const signInResult = await postSignIn(input.email, input.password);
-    console.log(signInResult);
     if (signInResult.isSuccess) {
       alert(signInResult.message);
       saveAccessToken(signInResult.accessToken);
-      navigator("/todo");
+      navigate("/todo");
     } else {
       alert(signInResult.message);
     }
   };
 
+  useEffect(() => {
+    hasAccessToken() && navigate("/todo", { replace: true });
+  }, [navigate]);
+
   return (
     <main>
-      <h1>로그인</h1>
+      <h1 className={styles.page_title}>로그인</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='email'>이메일</label>
-          <input
-            id='email'
-            name='email'
-            type='email'
-            value={input.email}
-            data-testid='email-input'
-            onChange={handleInput}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>패스워드</label>
-          <input
-            id='password'
-            name='password'
-            type='password'
-            value={input.password}
-            data-testid='password-input'
-            onChange={handleInput}
-          />
-        </div>
-        <button
-          data-testid='signin-button'
-          disabled={isEmailValid && isPwdValid ? false : true}
-        >
-          로그인
-        </button>
+        <CustomInput
+          labelFor='email'
+          labelText='email'
+          id='email'
+          name='email'
+          type='email'
+          value={input.email}
+          testid='email-input'
+          onChangeHandler={handleInput}
+        />
+        <CustomInput
+          labelFor='password'
+          labelText='password'
+          id='password'
+          name='password'
+          type='password'
+          value={input.password}
+          testid='password-input'
+          onChangeHandler={handleInput}
+        />
+        <CustomButton
+          testid='signin-button'
+          buttonText={"로그인"}
+          isDisabled={isEmailValid && isPwdValid ? false : true}
+        />
       </form>
     </main>
   );
