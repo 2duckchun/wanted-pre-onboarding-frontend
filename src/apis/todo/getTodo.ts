@@ -10,8 +10,6 @@ const getTodo = async () => {
     url: url,
   });
 
-  console.log(getTodoDTO);
-
   const getTodoResult: getTodoResult = {
     data: [],
     message: "",
@@ -19,6 +17,7 @@ const getTodo = async () => {
   };
 
   if (getTodoDTO?.status === 200) {
+    console.log("DTO DATA", getTodoDTO.data);
     getTodoResult.data = getTodoDTO?.data;
     getTodoResult.message = "200 OK";
     getTodoResult.isSuccess = true;
@@ -32,14 +31,12 @@ const getTodo = async () => {
 
 const getTodoInstance = axios.create({
   baseURL: API_PATH,
-  headers: {
-    Authorization: `Bearer ${getAccessToken()}`,
-  },
   timeout: 5000,
 });
 
 getTodoInstance.interceptors.request.use(
   (config) => {
+    config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
     return config;
   },
   (error) => {

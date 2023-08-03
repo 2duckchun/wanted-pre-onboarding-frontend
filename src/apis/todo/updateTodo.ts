@@ -36,13 +36,13 @@ const updateTodoInstance = axios.create({
   baseURL: API_PATH,
   headers: {
     "Content-type": "application/json",
-    Authorization: `Bearer ${getAccessToken()}`,
   },
   timeout: 5000,
 });
 
 updateTodoInstance.interceptors.request.use(
   (config) => {
+    config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
     return config;
   },
   (error) => {

@@ -32,14 +32,12 @@ const deleteTodo = async (id: number) => {
 
 const deleteTodoInstance = axios.create({
   baseURL: API_PATH,
-  headers: {
-    Authorization: `Bearer ${getAccessToken()}`,
-  },
   timeout: 5000,
 });
 
 deleteTodoInstance.interceptors.request.use(
   (config) => {
+    config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
     return config;
   },
   (error) => {
