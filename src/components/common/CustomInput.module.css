@@ -1,0 +1,14 @@
+.custom_input_container {
+  margin: 10px auto;
+  width: 300px;
+}
+
+.input_label {
+  text-align: left;
+  display: block;
+  padding: 5px;
+}
+
+.input {
+  width: 100%;
+}
