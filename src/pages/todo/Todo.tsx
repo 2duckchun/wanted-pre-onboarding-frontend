@@ -82,7 +82,9 @@ export default function TodoPage() {
 
   // Access Token이 없을 시 /signin으로 강제 이동
   useEffect(() => {
-    !hasAccessToken() && navigate("/signin", { replace: true });
+    if (!hasAccessToken()) {
+      navigate("/signin", { replace: true });
+    }
   }, [navigate]);
 
   // 초기 화면 렌더링 시 사용할 todolist를 가져옴

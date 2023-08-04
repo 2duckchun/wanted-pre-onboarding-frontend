@@ -38,7 +38,9 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    hasAccessToken() && navigate("/todo", { replace: true });
+    if (hasAccessToken()) {
+      navigate("/todo", { replace: true });
+    }
   }, [navigate]);
 
   return (
