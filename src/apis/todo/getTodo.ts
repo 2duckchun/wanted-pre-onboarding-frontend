@@ -17,7 +17,6 @@ const getTodo = async () => {
   };
 
   if (getTodoDTO?.status === 200) {
-    console.log("DTO DATA", getTodoDTO.data);
     getTodoResult.data = getTodoDTO?.data;
     getTodoResult.message = "200 OK";
     getTodoResult.isSuccess = true;
@@ -35,23 +34,23 @@ const getTodoInstance = axios.create({
 });
 
 getTodoInstance.interceptors.request.use(
-  (config) => {
+  config => {
     config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
     return config;
   },
-  (error) => {
+  error => {
     return null;
-  }
+  },
 );
 
 getTodoInstance.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response;
     return res;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 export default getTodo;

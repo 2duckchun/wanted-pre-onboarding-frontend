@@ -37,24 +37,22 @@ const signUpInstance = axios.create({
 });
 
 signUpInstance.interceptors.request.use(
-  (config) => {
+  config => {
     return config;
   },
-  (error) => {
-    console.log(error);
+  error => {
     return null;
-  }
+  },
 );
 
 signUpInstance.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response;
     return res;
   },
-  (error) => {
-    console.log(error);
+  error => {
     return error;
-  }
+  },
 );
 
 export default postSignUp;

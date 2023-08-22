@@ -40,23 +40,23 @@ const createTodoInstance = axios.create({
 });
 
 createTodoInstance.interceptors.request.use(
-  (config) => {
+  config => {
     config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
     return config;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 createTodoInstance.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response;
     return res;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 export default createTodo;

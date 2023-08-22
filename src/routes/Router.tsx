@@ -11,11 +11,11 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path='/' element={<Home />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/signin' element={<SignIn />} />
-          <Route path='/todo' element={<Todo />} />
-          <Route path='*' element={<NotFound />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/todo" element={<Todo />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

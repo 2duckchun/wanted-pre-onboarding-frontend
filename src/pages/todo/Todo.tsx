@@ -27,16 +27,12 @@ export default function TodoPage() {
 
   // 개별 Todo 업데이트 시 동작하는 이벤트 핸들러
   // 업데이트 성공시 업데이트가 된 부분의 엘리먼트만 수정함.
-  const handleUpdateTodo = async (
-    todoText: string,
-    checkYn: boolean,
-    id: number
-  ) => {
+  const handleUpdateTodo = async (todoText: string, checkYn: boolean, id: number) => {
     const updatedTodo = await updateTodo(todoText, checkYn, id);
 
     if (updatedTodo.isSuccess) {
       const { todo, isCompleted }: changedTodo = updatedTodo.data as Todo;
-      todoArray.map((el) => {
+      todoArray.map(el => {
         if (el.id === id) {
           return {
             ...el,
@@ -58,7 +54,7 @@ export default function TodoPage() {
 
     if (deletedTodo.isSuccess) {
       const deletedId: number = deletedTodo.deletedId as number;
-      setTodoArray(todoArray.filter((el) => el.id !== deletedId));
+      setTodoArray(todoArray.filter(el => el.id !== deletedId));
     } else {
       alert("통신에 문제가 발생했습니다.");
     }
@@ -99,24 +95,24 @@ export default function TodoPage() {
       <div className={styles.todo_list_container}>
         <div className={styles.todo_enroll_container}>
           <CustomInput
-            labelFor='add_todo'
-            labelText='Todo 추가!'
-            id='add_todo'
-            name='add_todo'
-            type='text'
+            labelFor="add_todo"
+            labelText="Todo 추가!"
+            id="add_todo"
+            name="add_todo"
+            type="text"
             value={input}
-            testid='new-todo-input'
+            testid="new-todo-input"
             onChangeHandler={handleInput}
           />
           <CustomButton
-            testid='new-todo-add-button'
-            buttonText='추가'
+            testid="new-todo-add-button"
+            buttonText="추가"
             propsStyle={styles.button_size}
             onClickHandler={() => handleCreateTodo(input)}
           />
         </div>
         <ul className={styles.todo_ul}>
-          {todoArray.map((el) => (
+          {todoArray.map(el => (
             <TodoListCard
               key={el.id}
               id={el.id}

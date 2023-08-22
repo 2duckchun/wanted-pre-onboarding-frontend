@@ -41,23 +41,23 @@ const updateTodoInstance = axios.create({
 });
 
 updateTodoInstance.interceptors.request.use(
-  (config) => {
+  config => {
     config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
     return config;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 updateTodoInstance.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response;
     return res;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 export default updateTodo;

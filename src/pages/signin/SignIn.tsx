@@ -49,27 +49,27 @@ export default function SignIn() {
       <h1 className={styles.page_title}>로그인</h1>
       <form onSubmit={handleSubmit}>
         <CustomInput
-          labelFor='email'
-          labelText='email'
-          id='email'
-          name='email'
-          type='email'
+          labelFor="email"
+          labelText="email"
+          id="email"
+          name="email"
+          type="email"
           value={input.email}
-          testid='email-input'
+          testid="email-input"
           onChangeHandler={handleInput}
         />
         <CustomInput
-          labelFor='password'
-          labelText='password'
-          id='password'
-          name='password'
-          type='password'
+          labelFor="password"
+          labelText="password"
+          id="password"
+          name="password"
+          type="password"
           value={input.password}
-          testid='password-input'
+          testid="password-input"
           onChangeHandler={handleInput}
         />
         <CustomButton
-          testid='signin-button'
+          testid="signin-button"
           buttonText={"로그인"}
           isDisabled={isEmailValid && isPwdValid ? false : true}
         />

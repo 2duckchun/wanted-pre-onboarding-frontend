@@ -10,7 +10,6 @@ const deleteTodo = async (id: number) => {
     url: url,
   });
 
-  console.log(deleteTodoDTO);
 
   const deleteTodoResult: deleteTodoResult = {
     deletedId: null,
@@ -36,23 +35,23 @@ const deleteTodoInstance = axios.create({
 });
 
 deleteTodoInstance.interceptors.request.use(
-  (config) => {
+  config => {
     config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
     return config;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 deleteTodoInstance.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response;
     return res;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 export default deleteTodo;

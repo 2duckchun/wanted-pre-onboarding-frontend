@@ -39,22 +39,22 @@ const signInInstance = axios.create({
 });
 
 signInInstance.interceptors.request.use(
-  (config) => {
+  config => {
     return config;
   },
-  (error) => {
+  error => {
     return null;
-  }
+  },
 );
 
 signInInstance.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response;
     return res;
   },
-  (error) => {
+  error => {
     return error;
-  }
+  },
 );
 
 export default postSignIn;

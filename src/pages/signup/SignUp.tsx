@@ -48,29 +48,29 @@ export default function SignUp() {
       <h1 className={styles.page_title}>회원가입</h1>
       <form onSubmit={handleSubmit}>
         <CustomInput
-          labelFor='email'
-          labelText='email'
-          id='email'
-          name='email'
-          type='email'
+          labelFor="email"
+          labelText="email"
+          id="email"
+          name="email"
+          type="email"
           value={input.email}
-          testid='email-input'
+          testid="email-input"
           onChangeHandler={handleInput}
         />
         <CustomInput
-          labelFor='password'
-          labelText='password'
-          id='password'
-          name='password'
-          type='password'
+          labelFor="password"
+          labelText="password"
+          id="password"
+          name="password"
+          type="password"
           value={input.password}
-          testid='password-input'
+          testid="password-input"
           onChangeHandler={handleInput}
         />
         <CustomButton
-          testid='signup-button'
+          testid="signup-button"
           isDisabled={isEmailValid && isPwdValid ? false : true}
-          buttonText='회원가입'
+          buttonText="회원가입"
         />
       </form>
     </main>

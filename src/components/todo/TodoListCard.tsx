@@ -25,9 +25,7 @@ export default function TodoListCard({
   };
 
   // 수정 상태가 아닐 때 체크박스를 누르면 체크박스의 업데이트만 진행되도록 함
-  const handleOnlyUpdateCheckbox = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleOnlyUpdateCheckbox = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(() => e.target.checked);
     if (!isModifyMode) updateTodoFn(todoInput, e.target.checked, id);
   };
@@ -45,11 +43,7 @@ export default function TodoListCard({
   };
 
   // ModifyMode에서 수정을 한 후 제출을 클릭하면 API통신을 보낸 뒤 ModifyMode를 끔.
-  const handleUpdateTodo = (
-    todoInput: string,
-    isChecked: boolean,
-    id: number
-  ) => {
+  const handleUpdateTodo = (todoInput: string, isChecked: boolean, id: number) => {
     updateTodoFn(todoInput, isChecked, id);
     setIsModifyMode(false);
   };
@@ -63,16 +57,16 @@ export default function TodoListCard({
       <label className={styles.todolist_label}>
         <input
           className={styles.todo_check_box}
-          type='checkbox'
+          type="checkbox"
           checked={isChecked}
           onChange={handleOnlyUpdateCheckbox}
         />
         {isModifyMode ? (
           <input
-            type='text'
+            type="text"
             value={todoInput}
             onChange={handleTodoInput}
-            data-testid='modify-input'
+            data-testid="modify-input"
           />
         ) : (
           <span className={styles.todo_span_text}>{todoInput}</span>
@@ -80,32 +74,23 @@ export default function TodoListCard({
 
         {isModifyMode ? (
           <button
-            data-testid='submit-button'
+            data-testid="submit-button"
             onClick={() => handleUpdateTodo(todoInput, isChecked, id)}
           >
             제출
           </button>
         ) : (
-          <button
-            data-testid='modify-button'
-            onClick={() => handleModifying(true)}
-          >
+          <button data-testid="modify-button" onClick={() => handleModifying(true)}>
             수정
           </button>
         )}
 
         {isModifyMode ? (
-          <button
-            data-testid='cancel-button'
-            onClick={() => handleModifying(false)}
-          >
+          <button data-testid="cancel-button" onClick={() => handleModifying(false)}>
             취소
           </button>
         ) : (
-          <button
-            data-testid='delete-button'
-            onClick={() => handleDeleteTodo(id)}
-          >
+          <button data-testid="delete-button" onClick={() => handleDeleteTodo(id)}>
             삭제
           </button>
         )}

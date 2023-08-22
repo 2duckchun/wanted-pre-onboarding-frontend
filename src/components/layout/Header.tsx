@@ -23,7 +23,7 @@ export default function Header() {
         <ul className={styles.header_ul}>
           <li>
             <NavLink
-              to='/signup'
+              to="/signup"
               className={({ isActive }) =>
                 isActive ? styles.header_link_active : styles.header_link
               }
@@ -34,7 +34,7 @@ export default function Header() {
 
           <li>
             <NavLink
-              to='/signin'
+              to="/signin"
               className={({ isActive }) =>
                 isActive ? styles.header_link_active : styles.header_link
               }
@@ -45,7 +45,7 @@ export default function Header() {
 
           <li>
             <NavLink
-              to='/todo'
+              to="/todo"
               className={({ isActive }) =>
                 isActive ? styles.header_link_active : styles.header_link
               }
