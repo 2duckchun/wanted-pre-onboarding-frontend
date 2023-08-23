@@ -6,7 +6,6 @@
       {
         "allow": ["warn", "error", "info"]
       }
-    ],
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    ]
   }
 }
