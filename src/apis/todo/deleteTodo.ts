@@ -10,7 +10,6 @@ const deleteTodo = async (id: number) => {
     url: url,
   });
 
-
   const deleteTodoResult: deleteTodoResult = {
     deletedId: null,
     message: "",
